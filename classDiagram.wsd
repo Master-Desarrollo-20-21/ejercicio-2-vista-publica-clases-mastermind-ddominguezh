@@ -66,14 +66,14 @@ package "Exceptions" #FFFFFF {
 }
 
 enum Color{
-    RED("r"),
-    BLUE("b"),
-    GREEN("g"),
-    YELLOW("y"),
-    PINK("p"),
-    MAGENTE("m"),
-    ORANGE("o"),
-    SILVER("s");
+    RED('r'),
+    BLUE('b'),
+    GREEN('g'),
+    YELLOW('y'),
+    PINK('p'),
+    MAGENTE('m'),
+    ORANGE('o'),
+    SILVER('s');
     - shortName
     {static} values(string colors)
     {static} valueOf(char color)
