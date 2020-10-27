@@ -1,0 +1,107 @@
+@startuml
+
+class MasterMind{
+    - Game: games
+    {static} main()
+}
+
+class Game {
+    - Attempt[] : attempts
+    - Combination : secret
+    - numAttempts : int
+    + play()
+    + hasWon()
+    - moreAttempts()
+    - attemptsRemain()
+    - finish()
+}
+
+class Attempt {
+    - Spike[] : spikes
+    - Combination : proposed
+    + result(secret)
+    + print()
+    + isWinner()
+    + isLoser()
+    - numSpikes(spike)
+}
+
+interface ICombinationBuilder {
+    + build()
+}
+
+class CombinationBuilder {
+    - combination: Combination
+    + withMachine()
+    + withPlayer()
+    + build()
+}
+    
+class Combination {
+    - Color[] colors
+    + isValid()
+    + toString()
+    + equals(combination)
+    + equals(combination, index)
+    + notEquals(combination, index)
+    + contains(combination, index)
+    + lenght()
+    - isValidLength()
+    - isValidColors()
+    - haveRepeatingColors()
+}
+
+class GestionIO{
+    + write(value)
+    + read()
+}
+
+package "Exceptions" #FFFFFF {
+    class Exception {
+        + print()
+    }
+    class LengthException {}
+    class ColorException {}
+    class RepeatedColorsException{}
+}
+
+enum Color{
+    RED("r"),
+    BLUE("b"),
+    GREEN("g"),
+    YELLOW("y"),
+    PINK("p"),
+    MAGENTE("m"),
+    ORANGE("o"),
+    SILVER("s");
+    - shortName
+    {static} values(string colors)
+    {static} valueOf(char color)
+    {static} shortNames()
+    + shortName()
+}
+
+enum Spike {
+    WHITE,
+    BLACK,
+}
+
+MasterMind *--> Game
+MasterMind ..> GestionIO
+Game *--> CombinationBuilder
+Game *--> "1, 10" Attempt
+Game ..> GestionIO
+Attempt *--> CombinationBuilder
+Attempt o--> "4" Spike
+Attempt ..> GestionIO
+ICombinationBuilder <|-- CombinationBuilder
+CombinationBuilder *--> Combination
+CombinationBuilder ..> GestionIO
+Combination o--> "4" Color
+Combination ..> Exception
+
+Exception <|-- LengthException
+Exception <|-- ColorException
+Exception <|-- RepeatedColorsException
+
+@enduml
