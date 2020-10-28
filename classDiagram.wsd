@@ -11,6 +11,7 @@ class Game {
     - numAttempts : int
     + play()
     + hasWon()
+    - printAttempts()
     - moreAttempts()
     - attemptsRemain()
     - finish()
