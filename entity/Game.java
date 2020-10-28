@@ -20,12 +20,15 @@ public class Game {
 			io.write(secret.toString());
 			attempts[this.numAttempts] = new Attempt().result(secret);
 			this.numAttempts++;
-			for(int j = 0 ; j < this.numAttempts ; j++) {
-				attempts[j].print();
-			}
-			io.write("");
+			printAttempts();
 		}while(moreAttempts());
 		finish();
+	}
+	private void printAttempts() {
+		for(int j = 0 ; j < this.numAttempts ; j++) {
+			attempts[j].print();
+		}
+		io.write("");
 	}
 	private boolean moreAttempts() {
 		Attempt attempt = this.attempts[this.numAttempts - 1];
