@@ -1,16 +1,14 @@
 package com.ddominguezh.master.v4.exercise.entity;
 
-import com.ddominguezh.master.v4.exercise.builder.impl.CombinationBuilder;
-
 public class Game {
 
 	private final static int MAX_ATTEMTPS = 10;
-	private Combination secret;
+	private SecretCombination secret;
 	private Attempt[] attempts;
 	private int numAttempts;
 	private GestorIO io = new GestorIO();
 	public Game() {
-		this.secret = new CombinationBuilder().withMachine().build();
+		this.secret = new SecretCombination();
 		this.attempts = new Attempt[MAX_ATTEMTPS];
 		this.numAttempts = 0;
 	}
@@ -21,7 +19,7 @@ public class Game {
 			attempts[this.numAttempts] = new Attempt().result(secret);
 			this.numAttempts++;
 			printAttempts();
-		}while(moreAttempts());
+		}while(haveMoreAttempts());
 		finish();
 	}
 	private void printAttempts() {
@@ -30,11 +28,11 @@ public class Game {
 		}
 		io.write("");
 	}
-	private boolean moreAttempts() {
+	private boolean haveMoreAttempts() {
 		Attempt attempt = this.attempts[this.numAttempts - 1];
-		return attempt.isLoser() && attemptsRemain();
+		return attempt.isLoser() && haveAttemptsRemain();
 	}
-	private boolean attemptsRemain() {
+	private boolean haveAttemptsRemain() {
 		return this.attempts[MAX_ATTEMTPS - 1] == null;
 	}
 	private void finish() {
