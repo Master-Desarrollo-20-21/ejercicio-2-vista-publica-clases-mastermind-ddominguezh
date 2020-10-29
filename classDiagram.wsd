@@ -7,19 +7,19 @@ class MasterMind{
 
 class Game {
     - Attempt[] : attempts
-    - Combination : secret
+    - SecretCombination : secret
     - numAttempts : int
     + play()
     + hasWon()
     - printAttempts()
-    - moreAttempts()
-    - attemptsRemain()
+    - haveMoreAttempts()
+    - haveAttemptsRemain()
     - finish()
 }
 
 class Attempt {
     - Spike[] : spikes
-    - Combination : proposed
+    - ProposedCombination : proposed
     + result(secret)
     + print()
     + isWinner()
@@ -27,17 +27,6 @@ class Attempt {
     - numSpikes(spike)
 }
 
-interface ICombinationBuilder {
-    + build()
-}
-
-class CombinationBuilder {
-    - combination: Combination
-    + withMachine()
-    + withPlayer()
-    + build()
-}
-    
 class Combination {
     - Color[] colors
     + isValid()
@@ -52,18 +41,15 @@ class Combination {
     - haveRepeatingColors()
 }
 
+class SecretCombination {
+}
+
+class ProposedCombination {
+}
+
 class GestionIO{
     + write(value)
     + read()
-}
-
-package "Exceptions" #FFFFFF {
-    class Exception {
-        + print()
-    }
-    class LengthException {}
-    class ColorException {}
-    class RepeatedColorsException{}
 }
 
 enum Color{
@@ -89,20 +75,14 @@ enum Spike {
 
 MasterMind *--> Game
 MasterMind ..> GestionIO
-Game *--> CombinationBuilder
+Game *--> SecretCombination
 Game *--> "1, 10" Attempt
 Game ..> GestionIO
-Attempt *--> CombinationBuilder
+Attempt *--> ProposedCombination
 Attempt o--> "0, 4" Spike
 Attempt ..> GestionIO
-ICombinationBuilder <|-- CombinationBuilder
-CombinationBuilder *--> Combination
-CombinationBuilder ..> GestionIO
+Combination <|-- SecretCombination
+Combination <|-- ProposedCombination
 Combination o--> "4" Color
-Combination ..> Exception
-
-Exception <|-- LengthException
-Exception <|-- ColorException
-Exception <|-- RepeatedColorsException
 
 @enduml
