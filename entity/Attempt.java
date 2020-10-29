@@ -2,17 +2,15 @@ package com.ddominguezh.master.v4.exercise.entity;
 
 import java.util.Arrays;
 
-import com.ddominguezh.master.v4.exercise.builder.impl.CombinationBuilder;
 import com.ddominguezh.master.v4.exercise.enums.Spike;
 
 public class Attempt {
 
-	private Combination proposed;
+	private ProposedCombination proposed;
 	private Spike[] spikes;
 	private GestorIO io = new GestorIO();
 	public Attempt() {
-		CombinationBuilder builder = new CombinationBuilder();
-		this.proposed = builder.withPlayer().build();
+		this.proposed = new ProposedCombination();
 		io.write("Propose a combination: " + this.proposed.toString());
 		this.spikes = new Spike[4];
 	}
