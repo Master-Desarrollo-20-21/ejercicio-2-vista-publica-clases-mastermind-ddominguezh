@@ -84,13 +84,4 @@ public class Combination {
     public int lenght() {
     		return COLORS_LENGTH;
     }
-    public Combination(String colors) {
-		this.colors = Color.values(colors);
-	}
-    public Combination(Color[] colors) {
-		this.colors = colors;
-	}
-	public Combination(Combination combination) {
-		this(combination.colors);
-	}
 }
