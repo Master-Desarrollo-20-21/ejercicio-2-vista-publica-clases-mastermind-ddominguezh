@@ -8,7 +8,6 @@ import com.ddominguezh.master.v4.exercise.builder.ICombinationBuilder;
 import com.ddominguezh.master.v4.exercise.entity.Combination;
 import com.ddominguezh.master.v4.exercise.entity.GestorIO;
 import com.ddominguezh.master.v4.exercise.enums.Color;
-import com.ddominguezh.master.v4.exercise.exception.Exception;
 
 public class CombinationBuilder implements ICombinationBuilder {
 
@@ -29,13 +28,8 @@ public class CombinationBuilder implements ICombinationBuilder {
 		GestorIO gestor = new GestorIO();
 		boolean isValid = false;
 		do {
-			try {
-				this.combination = new Combination(gestor.read());
-				this.combination.isValid();
-				isValid = true;
-			}catch(Exception exception){
-				exception.print();
-			}
+			this.combination = new Combination(gestor.read());
+			isValid = this.combination.isValid();
 		}while(!isValid);
 		return this;
 	}
