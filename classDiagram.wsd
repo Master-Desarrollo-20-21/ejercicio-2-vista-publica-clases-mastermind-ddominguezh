@@ -93,7 +93,7 @@ Game *--> CombinationBuilder
 Game *--> "1, 10" Attempt
 Game ..> GestionIO
 Attempt *--> CombinationBuilder
-Attempt o--> "4" Spike
+Attempt o--> "0, 4" Spike
 Attempt ..> GestionIO
 ICombinationBuilder <|-- CombinationBuilder
 CombinationBuilder *--> Combination
