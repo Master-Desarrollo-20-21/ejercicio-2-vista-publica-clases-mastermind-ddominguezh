@@ -1,43 +1,52 @@
 package com.ddominguezh.master.v4.exercise.entity;
 
 import com.ddominguezh.master.v4.exercise.enums.Color;
-import com.ddominguezh.master.v4.exercise.exception.ColorException;
-import com.ddominguezh.master.v4.exercise.exception.Exception;
-import com.ddominguezh.master.v4.exercise.exception.LengthException;
-import com.ddominguezh.master.v4.exercise.exception.RepeatedColorsException;
 
 public class Combination {
 
 	private static int COLORS_LENGTH = 4;
 	private Color[] colors;
-	public Combination isValid() throws Exception{
-		isValidLength();
-		isValidColors();
-		haveRepeatingColors();
-		return this;
-	}
-	private void isValidLength() throws LengthException {
-		if(this.colors.length != COLORS_LENGTH) {
-			throw new LengthException();
+	private GestorIO io = new GestorIO();
+	public boolean isValid() {
+		if(!isValidLength()) {
+			return false;
 		}
+		if(!isValidColors()) {
+			return false;
+		}
+		if(!haveRepeatingColors()) {
+			return false;
+		}
+		return true;
 	}
-	private void isValidColors() throws ColorException {
+	private boolean isValidLength() {
+		if(this.colors.length != COLORS_LENGTH) {
+			io.write("Wrong proposed combination length");
+			return false;
+		}
+		return true;
+	}
+	private boolean isValidColors() {
 		for(Color color : this.colors) {
 			if(color == null) {
-				throw new ColorException();
+				io.write("Wrong colors they must be: " + Color.shortNames());
+				return false;
 			}
 		}
+		return true;
 	}
-    private void haveRepeatingColors() throws RepeatedColorsException {
+    private boolean haveRepeatingColors() {
     		for(int i = 0 ; i < this.colors.length ; i++) {
     			Color color = this.colors[i];
     			for( int j = i+1; j < this.colors.length ; j++) {
     				Color nextColor = this.colors[j];
     				if(color.equals(nextColor)) {
-    					throw new RepeatedColorsException();
+    					io.write("Wrong proposed, can not repeat color.");
+    					return false;
     				}
     			}
     		}
+    		return true;
     }
     @Override
     public String toString() {
