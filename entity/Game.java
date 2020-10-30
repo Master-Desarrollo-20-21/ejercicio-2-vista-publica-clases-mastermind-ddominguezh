@@ -3,7 +3,7 @@ package com.ddominguezh.master.v4.exercise.entity;
 public class Game {
 
 	private final static int MAX_ATTEMTPS = 10;
-	private SecretCombination secret;
+	private Combination secret;
 	private Attempt[] attempts;
 	private int numAttempts;
 	private GestorIO io = new GestorIO();
@@ -14,8 +14,8 @@ public class Game {
 	}
 	public void play() {
 		do {
-			io.write("Attempt " + this.numAttempts);
-			io.write(secret.toString());
+			io.writeln("Attempt " + this.numAttempts);
+			io.writeln(secret.toString());
 			attempts[this.numAttempts] = new Attempt().result(secret);
 			this.numAttempts++;
 			printAttempts();
@@ -26,7 +26,7 @@ public class Game {
 		for(int j = 0 ; j < this.numAttempts ; j++) {
 			attempts[j].print();
 		}
-		io.write("");
+		io.writeln("");
 	}
 	private boolean haveMoreAttempts() {
 		Attempt attempt = this.attempts[this.numAttempts - 1];
@@ -37,9 +37,9 @@ public class Game {
 	}
 	private void finish() {
 		if(hasWon()) {
-			io.write("You're winner :-)!!");
+			io.writeln("You're winner :-)!!");
 		}else {
-			io.write("You loose :-(");
+			io.writeln("You loose :-(");
 		}
 	}
 	public boolean hasWon() {
