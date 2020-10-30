@@ -12,8 +12,14 @@ public class GestorIO {
         return this.scanner.nextLine(); 
 	}
 
-	public void write(String value) {
+	public GestorIO write(String value) {
+		System.out.print(value);
+		return this;
+	}
+	
+	public GestorIO writeln(String value) {
 		System.out.println(value);
+		return this;
 	}
 
 }
