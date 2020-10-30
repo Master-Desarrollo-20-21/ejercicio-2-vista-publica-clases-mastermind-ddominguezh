@@ -20,7 +20,7 @@ public class MasterMind {
 				wons++;
 			}
 			games.add(game);
-		}while("Y".equalsIgnoreCase(io.write("do you want to play again? (Y/N): ").read()));
+		}while("Y".equalsIgnoreCase(io.write("Do you want to play again? (Y/N): ").read()));
 		io.write("You have won " + wons + " times, you have lost " + (games.size() - wons) + " times");
 	}
 
