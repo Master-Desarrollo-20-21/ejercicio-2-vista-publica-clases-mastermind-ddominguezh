@@ -15,7 +15,6 @@ public class Game {
 	public void play() {
 		do {
 			io.writeln("Attempt " + this.numAttempts);
-			io.writeln(secret.toString());
 			attempts[this.numAttempts] = new Attempt().result(secret);
 			this.numAttempts++;
 			printAttempts();
