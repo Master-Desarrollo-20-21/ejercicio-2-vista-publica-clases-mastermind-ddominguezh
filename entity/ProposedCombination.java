@@ -9,7 +9,7 @@ public class ProposedCombination extends Combination {
 		GestorIO gestor = new GestorIO();
 		boolean isValid = false;
 		do {
-			this.colors = Color.values(gestor.read());
+			this.colors = Color.values(gestor.write("Propose a combination: ").read());
 			isValid = isValid();
 		}while(!isValid);
 	}
