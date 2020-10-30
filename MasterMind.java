@@ -13,15 +13,14 @@ public class MasterMind {
 		GestorIO io = new GestorIO();
 		int wons = 0;
 		do {
-			io.write("----------------- MASTERMIND -----------------");
+			io.writeln("----------------- MASTERMIND -----------------");
 			Game game = new Game();
 			game.play();
 			if(game.hasWon()) {
 				wons++;
 			}
 			games.add(game);
-			io.write("do you want to play again? (Y/N)");
-		}while("Y".equalsIgnoreCase(io.read()));
+		}while("Y".equalsIgnoreCase(io.write("do you want to play again? (Y/N): ").read()));
 		io.write("You have won " + wons + " times, you have lost " + (games.size() - wons) + " times");
 	}
 
