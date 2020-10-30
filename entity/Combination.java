@@ -5,7 +5,7 @@ import com.ddominguezh.master.v4.exercise.enums.Color;
 public class Combination {
 
 	private static int COLORS_LENGTH = 4;
-	private Color[] colors;
+	protected Color[] colors;
 	private GestorIO io = new GestorIO();
 	public boolean isValid() {
 		if(!isValidLength()) {
@@ -21,7 +21,7 @@ public class Combination {
 	}
 	private boolean isValidLength() {
 		if(this.colors.length != COLORS_LENGTH) {
-			io.write("Wrong proposed combination length");
+			io.writeln("Wrong proposed combination length");
 			return false;
 		}
 		return true;
@@ -29,7 +29,7 @@ public class Combination {
 	private boolean isValidColors() {
 		for(Color color : this.colors) {
 			if(color == null) {
-				io.write("Wrong colors they must be: " + Color.shortNames());
+				io.writeln("Wrong colors they must be: " + Color.shortNames());
 				return false;
 			}
 		}
@@ -41,7 +41,7 @@ public class Combination {
     			for( int j = i+1; j < this.colors.length ; j++) {
     				Color nextColor = this.colors[j];
     				if(color.equals(nextColor)) {
-    					io.write("Wrong proposed, can not repeat color.");
+    					io.writeln("Wrong proposed, can not repeat color.");
     					return false;
     				}
     			}
